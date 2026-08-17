@@ -74,14 +74,15 @@ PY
     echo "  Model: auto-detect"
   fi
   echo
-  echo "1) Start local GGUF model"
-  echo "2) Start with OpenAI"
-  echo "3) Start with Gemini"
-  echo "4) Start with DeepSeek"
-  echo "5) Start with OpenRouter"
-  echo "6) Start with custom endpoint"
-  echo "7) Open web UI"
-  echo "8) Exit"
+  echo "1) PortableAI Custom UI"
+  echo "2) llama.cpp Built-in UI"
+  echo "3) Start local GGUF model (shared llama-server)"
+  echo "4) Start with OpenAI"
+  echo "5) Start with Gemini"
+  echo "6) Start with DeepSeek"
+  echo "7) Start with OpenRouter"
+  echo "8) Start with custom endpoint"
+  echo "9) Exit"
   echo
 }
 
@@ -139,17 +140,18 @@ start_remote() {
 while true; do
   clear
   show_menu
-  read -p "Choose an option [1-8]: " choice
+  read -p "Choose an option [1-9]: " choice
 
   case "$choice" in
-    1) start_local; break ;;
-    2) start_remote openai ; break ;;
-    3) start_remote gemini ; break ;;
-    4) start_remote deepseek ; break ;;
-    5) start_remote openrouter ; break ;;
-    6) start_remote custom ; break ;;
-    7) if command -v open >/dev/null 2>&1; then open http://127.0.0.1:9000; else echo "Open http://127.0.0.1:9000 in your browser."; fi; read -p "Press Enter to return to the menu..." _; ;;
-    8) echo "Goodbye."; exit 0 ;;
+    1) echo "Opening PortableAI Custom UI: http://127.0.0.1:9000"; if command -v open >/dev/null 2>&1; then open http://127.0.0.1:9000; else echo "Open http://127.0.0.1:9000 in your browser."; fi; read -p "Press Enter to return to the menu..." _; ;;
+    2) echo "Opening llama.cpp Built-in UI: http://127.0.0.1:8080"; if command -v open >/dev/null 2>&1; then open http://127.0.0.1:8080; else echo "Open http://127.0.0.1:8080 in your browser."; fi; read -p "Press Enter to return to the menu..." _; ;;
+    3) start_local; break ;;
+    4) start_remote openai ; break ;;
+    5) start_remote gemini ; break ;;
+    6) start_remote deepseek ; break ;;
+    7) start_remote openrouter ; break ;;
+    8) start_remote custom ; break ;;
+    9) echo "Goodbye."; exit 0 ;;
     *) echo "Invalid option. Press Enter to continue..."; read -p "" _ ;;
   esac
 

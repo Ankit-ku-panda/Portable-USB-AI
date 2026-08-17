@@ -1399,11 +1399,15 @@ def main():
     print("=" * 60)
 
     print(
-        f"Web/API: http://127.0.0.1:{PORT}"
+        f"PortableAI Custom UI: http://127.0.0.1:{PORT}"
     )
 
     print(
-        f"llama.cpp: http://127.0.0.1:{LLAMA_PORT}"
+        f"llama.cpp Built-in UI: http://127.0.0.1:{LLAMA_PORT}"
+    )
+
+    print(
+        f"Shared engine: one llama-server instance for both UIs"
     )
 
     print(
@@ -1413,8 +1417,9 @@ def main():
     print("=" * 60)
     print()
 
-
-    print(f"Open http://127.0.0.1:{PORT} in VS Code or a local browser tab.")
+    print(f"Choose either UI, but do not start a second copy of the model.")
+    print(f"Custom UI: http://127.0.0.1:{PORT}")
+    print(f"Built-in UI: http://127.0.0.1:{LLAMA_PORT}")
 
     try:
 

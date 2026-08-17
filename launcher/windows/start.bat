@@ -43,25 +43,27 @@ echo ====================================
 echo.
 echo Current setup: local ^| auto-detect
 echo.
-echo 1) Start local GGUF model
-echo 2) Start with OpenAI
-echo 3) Start with Gemini
-echo 4) Start with DeepSeek
-echo 5) Start with OpenRouter
-echo 6) Start with custom endpoint
-echo 7) Open web UI manually
-echo 8) Exit
+echo 1) PortableAI Custom UI
+echo 2) llama.cpp Built-in UI
+echo 3) Start local GGUF model (shared llama-server)
+echo 4) Start with OpenAI
+echo 5) Start with Gemini
+echo 6) Start with DeepSeek
+echo 7) Start with OpenRouter
+echo 8) Start with custom endpoint
+echo 9) Exit
 echo.
-set /p "CHOICE=Choose an option [1-8]: "
+set /p "CHOICE=Choose an option [1-9]: "
 
-if "%CHOICE%"=="1" goto :local
-if "%CHOICE%"=="2" set "PROVIDER=openai" & goto :remote
-if "%CHOICE%"=="3" set "PROVIDER=gemini" & goto :remote
-if "%CHOICE%"=="4" set "PROVIDER=deepseek" & goto :remote
-if "%CHOICE%"=="5" set "PROVIDER=openrouter" & goto :remote
-if "%CHOICE%"=="6" set "PROVIDER=custom" & goto :remote
-if "%CHOICE%"=="7" echo Open http://127.0.0.1:9000 in VS Code or your browser manually. & timeout /t 2 >nul & goto :menu
-if "%CHOICE%"=="8" exit /b 0
+if "%CHOICE%"=="1" echo Open PortableAI Custom UI: http://127.0.0.1:9000 & start "" http://127.0.0.1:9000 & timeout /t 2 >nul & goto :menu
+if "%CHOICE%"=="2" echo Open llama.cpp Built-in UI: http://127.0.0.1:8080 & start "" http://127.0.0.1:8080 & timeout /t 2 >nul & goto :menu
+if "%CHOICE%"=="3" goto :local
+if "%CHOICE%"=="4" set "PROVIDER=openai" & goto :remote
+if "%CHOICE%"=="5" set "PROVIDER=gemini" & goto :remote
+if "%CHOICE%"=="6" set "PROVIDER=deepseek" & goto :remote
+if "%CHOICE%"=="7" set "PROVIDER=openrouter" & goto :remote
+if "%CHOICE%"=="8" set "PROVIDER=custom" & goto :remote
+if "%CHOICE%"=="9" exit /b 0
 
 echo.
 echo Invalid option. Press any key to continue...
