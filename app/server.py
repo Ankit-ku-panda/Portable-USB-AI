@@ -3,7 +3,6 @@ from pathlib import Path
 import subprocess
 import sys
 import time
-import webbrowser
 import json
 import urllib.request
 import urllib.error
@@ -45,10 +44,13 @@ ROOT = Path(__file__).resolve().parent.parent
 MODELS = ROOT / "models"
 WEB = ROOT / "app" / "web"
 CHATS = ROOT / "data" / "chats"
+CONFIG_DIR = ROOT / "config"
 
 PORT = int(os.getenv("PORT", 9000))
 LLAMA_PORT = int(os.getenv("LLAMA_PORT", 8080))
-CONFIG_PATH = ROOT / "config.json"
+CONFIG_PATH = CONFIG_DIR / "config.json"
+
+CONFIG_DIR.mkdir(parents=True, exist_ok=True)
 
 CHATS.mkdir(parents=True, exist_ok=True)
 
@@ -213,6 +215,9 @@ def resolve_model_name(requested_name=""):
 
     if os.path.isabs(requested_name) or "/" in requested_name or "\\" in requested_name:
         requested_path = Path(requested_name).expanduser()
+        if not requested_path.is_absolute():
+            requested_path = (ROOT / requested_path).resolve()
+
         if requested_path.exists() and requested_path.suffix.lower() == ".gguf":
             return requested_path.resolve()
 
@@ -1298,7 +1303,7 @@ def main():
             sys.exit(1)
 
         model = resolve_model_name(requested_model)
-        server_config["model"] = str(model.resolve())
+        server_config["model"] = str(model.relative_to(ROOT).as_posix())
         print("Model selected:")
         print(model.name)
     else:
@@ -1330,7 +1335,7 @@ def main():
 
     if provider == "local":
         model = resolve_model_name(requested_model)
-        server_config["model"] = str(model.resolve())
+        server_config["model"] = str(model.relative_to(ROOT).as_posix())
 
         # --------------------------------------------------------
         # Show all available models
@@ -1409,10 +1414,7 @@ def main():
     print()
 
 
-    webbrowser.open(
-        f"http://127.0.0.1:{PORT}"
-    )
-
+    print(f"Open http://127.0.0.1:{PORT} in VS Code or a local browser tab.")
 
     try:
 

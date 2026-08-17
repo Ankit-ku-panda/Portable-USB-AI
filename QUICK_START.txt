@@ -1,0 +1,93 @@
+================================================================================
+                    PORTABLE AI - QUICK START
+================================================================================
+
+OPTION 1: START THE APPLICATION
+================================================================================
+
+WINDOWS:
+  Run: launcher/start.bat
+
+LINUX/macOS:
+  Run: launcher/start.sh (Linux)
+       launcher/start.command (macOS)
+
+The application will:
+  1. Start the local AI model
+  2. Display a menu to choose your UI
+  3. Open the web interface at http://127.0.0.1:9000
+
+================================================================================
+
+OPTION 2: FIRST-TIME SETUP (Install models, etc)
+================================================================================
+
+WINDOWS:
+  Run: installer/install.bat
+
+LINUX/macOS:
+  Run: installer/install.sh (Linux)
+
+This will:
+  1. Check your system requirements
+  2. Download the recommended model (optional)
+  3. Create required directories
+  4. Configure the application
+
+================================================================================
+
+INTERFACE CHOICES
+================================================================================
+
+Once PortableAI starts, choose:
+
+[1] PortableAI Custom UI
+    - Lightweight custom chat interface
+    - Stored in: app/web/
+
+[2] llama.cpp Built-in UI
+    - Official llama.cpp interface
+    - Access at: http://127.0.0.1:8080
+
+Both UIs share the SAME running model - no duplicate loading.
+
+================================================================================
+
+FILE LOCATIONS
+================================================================================
+
+App Start:      launcher/
+App Setup:      installer/
+Config:         config/config.json
+Models:         models/
+Chat History:   data/chats/
+Logs:           data/logs/ (created on first run)
+
+================================================================================
+
+TIPS
+================================================================================
+
+- Keep the terminal open while using PortableAI
+- Press Ctrl+C in the terminal to stop the application
+- All data stays on the USB drive (portable)
+- Works offline once started
+- No installation needed on the host computer
+
+================================================================================
+
+TROUBLESHOOTING
+================================================================================
+
+Q: Python not found?
+A: Install Python 3 from python.org or use your system package manager
+
+Q: Model loading slowly?
+A: First load takes longer as the model downloads. Subsequent starts are faster.
+
+Q: Port already in use?
+A: Edit .env file and change PORT or LLAMA_PORT to unused ports
+
+For more info, see README.md
+
+================================================================================

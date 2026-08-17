@@ -454,6 +454,12 @@ All components are open-source and offline! 🎉
 
 ---
 
+## LICENSE
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
 ## CONCLUSION
 
 **PortableAI is fully operational and production-ready.**

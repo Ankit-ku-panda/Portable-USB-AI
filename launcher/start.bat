@@ -1,6 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 REM ========================================================
 REM AUTO-CACHE CLEARING FOR PORTABILITY
@@ -60,7 +60,7 @@ if "%CHOICE%"=="3" set "PROVIDER=gemini" & goto :remote
 if "%CHOICE%"=="4" set "PROVIDER=deepseek" & goto :remote
 if "%CHOICE%"=="5" set "PROVIDER=openrouter" & goto :remote
 if "%CHOICE%"=="6" set "PROVIDER=custom" & goto :remote
-if "%CHOICE%"=="7" start "" http://127.0.0.1:9000 & goto :menu
+if "%CHOICE%"=="7" echo Open http://127.0.0.1:9000 in VS Code or your browser manually. & timeout /t 2 >nul & goto :menu
 if "%CHOICE%"=="8" exit /b 0
 
 echo.

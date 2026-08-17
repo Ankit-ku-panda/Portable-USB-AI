@@ -1,6 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
+cd /d "%~dp0.."
+
 title PortableAI Setup Wizard
 
 REM Detect Python

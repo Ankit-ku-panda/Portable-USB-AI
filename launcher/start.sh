@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$SCRIPT_DIR"
 # ========================================================
 # AUTO-CACHE CLEARING FOR PORTABILITY
@@ -146,7 +146,7 @@ while true; do
     4) start_remote deepseek ; break ;;
     5) start_remote openrouter ; break ;;
     6) start_remote custom ; break ;;
-    7) if command -v xdg-open >/dev/null 2>&1; then xdg-open http://127.0.0.1:9000; elif command -v open >/dev/null 2>&1; then open http://127.0.0.1:9000; else echo "Open http://127.0.0.1:9000 in your browser."; fi; read -p "Press Enter to return to the menu..." _; ;;
+    7) echo "Open http://127.0.0.1:9000 in VS Code or your browser manually."; read -p "Press Enter to return to the menu..." _; ;;
     8) echo "Goodbye."; exit 0 ;;
     *) echo "Invalid option. Press Enter to continue..."; read -p "" _ ;;
   esac
