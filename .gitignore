@@ -15,3 +15,14 @@ Thumbs.db
 
 # Ignore test results
 test_results.txt
+
+# Ignore large binary files in llama directory
+app/llama/*
+# But keep any README or text files if needed
+!app/llama/*.md
+!app/llama/*.txt
+!app/llama/*.json
+
+# Ignore models directory
+models/*
+!models/README.md
