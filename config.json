@@ -1,0 +1,15 @@
+{
+  "provider": "local",
+  "model": "D:\\PortableAI\\models\\Qwen3-4B-Q4_K_M.gguf",
+  "base_url": "",
+  "api_key": "",
+  "context_size": 4096,
+  "threads": 8,
+  "gpu_layers": "auto",
+  "port": 9000,
+  "llama_port": 8080,
+  "temperature": 0.7,
+  "max_tokens": 512,
+  "top_p": 0.9,
+  "repeat_penalty": 1.1
+}

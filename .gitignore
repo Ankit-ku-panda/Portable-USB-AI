@@ -1,0 +1,17 @@
+﻿# Ignore model files
+*.gguf
+# Ignore chat data
+data/chats/
+
+# Ignore environment files
+.env
+
+# Ignore OS files
+Thumbs.db
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore test results
+test_results.txt
