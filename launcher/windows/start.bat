@@ -1,6 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
-cd /d "%~dp0.."
+cd /d "%~dp0..\.."
 
 REM ========================================================
 REM AUTO-CACHE CLEARING FOR PORTABILITY
