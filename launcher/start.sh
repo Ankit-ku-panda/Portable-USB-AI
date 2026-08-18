@@ -134,20 +134,89 @@ start_remote() {
   "$PYTHON_BIN" app/server.py "$selected_model" "$provider" "$api_key" "$base_url"
 }
 
+start_custom_ui() {
+  echo
+  echo "Available GGUF models:"
+  for model in models/*.gguf 2>/dev/null; do
+    [ -f "$model" ] && echo "  - $(basename "$model")"
+  done
+
+  echo
+  read -p "Enter model filename or press Enter for auto-select: " selected_model
+
+  if [ -n "$selected_model" ] && [ -f "models/$selected_model" ]; then
+    "$PYTHON_BIN" app/server.py "$selected_model" local &
+  else
+    if [ -n "$selected_model" ]; then
+      echo "Model not found: $selected_model"
+      echo "Falling back to the default local model..."
+    fi
+    "$PYTHON_BIN" app/server.py "" local &
+  fi
+
+  echo
+  echo "Waiting for server to start..."
+  sleep 3
+  if command -v xdg-open >/dev/null 2>&1; then
+    xdg-open http://127.0.0.1:9000 2>/dev/null || true
+  else
+    echo "Open http://127.0.0.1:9000 in your browser."
+  fi
+  echo
+  echo "PortableAI Custom UI opened in browser."
+  echo "The server is running in the background."
+  read -p "Press Enter to return to the menu..." _
+}
+
+start_builtin_ui() {
+  echo
+  echo "Available GGUF models:"
+  for model in models/*.gguf 2>/dev/null; do
+    [ -f "$model" ] && echo "  - $(basename "$model")"
+  done
+
+  echo
+  read -p "Enter model filename or press Enter for auto-select: " selected_model
+
+  if [ -n "$selected_model" ] && [ -f "models/$selected_model" ]; then
+    "$PYTHON_BIN" app/server.py "$selected_model" local &
+  else
+    if [ -n "$selected_model" ]; then
+      echo "Model not found: $selected_model"
+      echo "Falling back to the default local model..."
+    fi
+    "$PYTHON_BIN" app/server.py "" local &
+  fi
+
+  echo
+  echo "Waiting for server to start..."
+  sleep 3
+  if command -v xdg-open >/dev/null 2>&1; then
+    xdg-open http://127.0.0.1:8080 2>/dev/null || true
+  else
+    echo "Open http://127.0.0.1:8080 in your browser."
+  fi
+  echo
+  echo "llama.cpp Built-in UI opened in browser."
+  echo "The server is running in the background."
+  read -p "Press Enter to return to the menu..." _
+}
+
 while true; do
   clear
   show_menu
   read -p "Choose an option [1-8]: " choice
 
   case "$choice" in
-    1) start_local; break ;;
-    2) start_remote openai ; break ;;
-    3) start_remote gemini ; break ;;
-    4) start_remote deepseek ; break ;;
-    5) start_remote openrouter ; break ;;
-    6) start_remote custom ; break ;;
-    7) echo "Open http://127.0.0.1:9000 in VS Code or your browser manually."; read -p "Press Enter to return to the menu..." _; ;;
-    8) echo "Goodbye."; exit 0 ;;
+    1) start_custom_ui ;;
+    2) start_builtin_ui ;;
+    3) start_local; break ;;
+    4) start_remote openai ; break ;;
+    5) start_remote gemini ; break ;;
+    6) start_remote deepseek ; break ;;
+    7) start_remote openrouter ; break ;;
+    8) start_remote custom ; break ;;
+    9) echo "Goodbye."; exit 0 ;;
     *) echo "Invalid option. Press Enter to continue..."; read -p "" _ ;;
   esac
 

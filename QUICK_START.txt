@@ -6,16 +6,21 @@ OPTION 1: START THE APPLICATION
 ================================================================================
 
 WINDOWS:
-  Run: launcher/start.bat
+  Run: launcher/windows/start.bat
 
-LINUX/macOS:
-  Run: launcher/start.sh (Linux)
-       launcher/start.command (macOS)
+LINUX:
+  Run: launcher/linux/start.sh (first run: chmod +x start.sh)
+
+macOS:
+  Run: launcher/macos/start.command
 
 The application will:
-  1. Start the local AI model
-  2. Display a menu to choose your UI
-  3. Open the web interface at http://127.0.0.1:9000
+  1. Start the llama.cpp server with the local AI model
+  2. Automatically open the Llama UI in your browser
+  3. Access the UI at: http://127.0.0.1:8080
+
+Keep the terminal window open while using the app.
+Press Ctrl+C to stop the server.
 
 ================================================================================
 
@@ -36,18 +41,15 @@ This will:
 
 ================================================================================
 
-INTERFACE CHOICES
+WEB INTERFACE
 ================================================================================
 
-Once PortableAI starts, choose:
+The Llama UI is automatically opened when you start the application.
 
-[1] PortableAI Custom UI
-    - Lightweight custom chat interface
-    - Stored in: app/web/
+If it doesn't open automatically, access it at:
+  http://127.0.0.1:8080
 
-[2] llama.cpp Built-in UI
-    - Official llama.cpp interface
-    - Access at: http://127.0.0.1:8080
+This is the built-in llama.cpp web interface with chat functionality.
 
 Both UIs share the SAME running model - no duplicate loading.
 

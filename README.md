@@ -1,8 +1,8 @@
 # PortableAI - Complete Documentation
 
 **Status:** ✅ FULLY OPERATIONAL  
-**Last Verified:** August 17, 2026  
-**Version:** 1.1 Production (Dual-UI Architecture)
+**Last Verified:** August 18, 2026  
+**Version:** 2.0 Production (Llama UI Only)
 
 ---
 
@@ -24,28 +24,24 @@
 
 ### Windows
 1. Navigate to `launcher/windows/` and double-click `start.bat`
-2. Choose option `[3] Start local GGUF model (shared llama-server)`
-3. Wait for llama model to load (~10-15 seconds on CPU)
-4. Choose UI: `[1] PortableAI Custom UI` (http://127.0.0.1:9000) or `[2] llama.cpp Built-in UI` (http://127.0.0.1:8080)
-5. Both UIs share the **same** running llama-server instance
+2. Wait for llama-server to load the model (~10-15 seconds on CPU)
+3. The browser will automatically open to the Llama UI at http://127.0.0.1:8080
+4. Start chatting!
 
 ### macOS
 1. Navigate to `launcher/macos/` and double-click `start.command`
 2. Terminal window opens (keep it open)
-3. Choose option `[3] Start local GGUF model (shared llama-server)`
-4. Wait for model to load
-5. Choose UI: `[1] PortableAI Custom UI` or `[2] llama.cpp Built-in UI`
+3. Wait for model to load
+4. Browser opens automatically to http://127.0.0.1:8080
 
 ### Linux
 1. Open terminal in `launcher/linux/`
 2. Run: `chmod +x start.sh && bash start.sh`
-3. Choose option `[3] Start local GGUF model (shared llama-server)`
-4. Wait for model to load
-5. Choose UI: `[1] PortableAI Custom UI` or `[2] llama.cpp Built-in UI`
+3. Wait for model to load
+4. Open http://127.0.0.1:8080 in your browser
 
 ### Manual Access
-- **PortableAI Custom UI:** http://127.0.0.1:9000
-- **llama.cpp Built-in UI:** http://127.0.0.1:8080
+- **Llama UI:** http://127.0.0.1:8080
 
 **Keep terminal open while using the app. Press `Ctrl+C` to safely shut down.**
 
@@ -76,18 +72,13 @@ PortableAI/
 │   └── config.json            # User settings (auto-created)
 │
 ├── app/
-│   ├── server.py              # Python backend (HTTP + chat API + llama.cpp manager)
+│   ├── server.py              # Python backend (llama.cpp manager)
 │   ├── __pycache__/           # Python cache (auto-cleared on startup)
 │   │
-│   ├── llama/                 # llama.cpp binaries (per platform)
-│   │   ├── llama-server.exe   # Windows inference engine
-│   │   ├── llama-server       # Linux/macOS inference engine (add for your platform)
-│   │   └── *.dll              # Windows dependencies
-│   │
-│   └── web/                   # PortableAI Custom UI
-│       ├── index.html         # Chat interface
-│       ├── app.js             # Chat logic + SSE streaming
-│       └── style.css          # Dark theme styling
+│   └── llama/                 # llama.cpp binaries (per platform)
+│       ├── llama-server.exe   # Windows inference engine
+│       ├── llama-server       # Linux/macOS inference engine
+│       └── *.dll              # Windows dependencies
 │
 ├── models/                    # GGUF models (on USB)
 │   ├── Qwen3-4B-Q4_K_M.gguf  # Current model (2.4GB) ✅
