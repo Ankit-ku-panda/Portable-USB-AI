@@ -532,10 +532,6 @@ Add platform-specific `llama-server` binary to `app/llama/`:
 
 ---
 
-## LICENSE
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ---
 
 ## LICENSE & CREDITS
