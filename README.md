@@ -6,6 +6,14 @@
 
 ---
 
+## Interface Demo
+
+![PortableAI chat interface showing Qwen3 responding to a message](/portableai-interface.png)
+
+*PortableAI in action: the Qwen3 4B Q4_K_M model responds to a “hello” message in the llama.cpp chat interface. This screenshot shows the chat layout, message input, model label, and response statistics from that session.*
+
+---
+
 ## 📋 TABLE OF CONTENTS
 
 1. [Quick Start](#quick-start)
